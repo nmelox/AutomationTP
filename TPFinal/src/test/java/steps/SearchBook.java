@@ -2,7 +2,7 @@ package steps;
 
 import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -36,6 +36,8 @@ public class SearchBook {
 	@Then("Result page must be shown")
 	public void result_page_must_be_shown() {
 		this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Assert.assertTrue(driver.getTitle().contains("Search results for Sailor moon vol 7"));
+		Assert.assertTrue(driver.findElement
+				(By.xpath("/html/body/div[3]/div[5]/div[2]/div[3]/div/div/div/div/div[1]/div[2]/h3")).
+				getAttribute("innerText").equals("Sailor Moon Vol. 7"));
 	}
 }
